@@ -90,6 +90,10 @@
     .music{position:fixed;z-index:4;right:20px;bottom:20px;width:50px;height:50px;border:1px solid var(--gold);border-radius:50%;background:var(--navy);color:var(--gold);font-size:23px;cursor:pointer}
     section{padding:82px 22px}
     .heading{text-align:center;margin:0 auto 42px;max-width:680px}
+    .section-in-view .heading h2{animation:section-heading-glow 4s ease-in-out infinite}
+    .section-in-view .heading .eyebrow{animation:section-eyebrow-glow 4s ease-in-out infinite}
+    @keyframes section-heading-glow{0%,100%{text-shadow:0 0 0 transparent}50%{text-shadow:0 0 18px #d8b66c7a}}
+    @keyframes section-eyebrow-glow{0%,100%{filter:drop-shadow(0 0 0 transparent)}50%{filter:drop-shadow(0 0 6px #d8b66caa)}}
     .heading .eyebrow{color:#94763d}
     h2{margin:10px 0;font-family:"Playfair Display",Georgia,serif;font-size:clamp(34px,6vw,51px);font-weight:400;color:var(--navy)}
     .heading p,.body-copy{color:var(--muted);line-height:1.65}
@@ -122,6 +126,9 @@
     .couple-person:hover{transform:translateY(-8px);border-color:#b78a4a;box-shadow:0 24px 48px #101b3c20}
     .couple-person:hover:before{opacity:.9;transform:rotate(45deg) scale(1.35)}
     .couple-person:hover:after{opacity:.9;transform:rotate(-45deg) scale(1.35)}
+    .couple.section-in-view .couple-person:before,.couple.section-in-view .couple-person:after{animation:couple-detail-glow 3.6s ease-in-out infinite}
+    .couple.section-in-view .couple-person:after{animation-delay:1.8s}
+    @keyframes couple-detail-glow{50%{opacity:.95;filter:drop-shadow(0 0 7px #d8b66c)}}
     .portrait{width:180px;height:180px;margin:0 auto 17px;border:5px solid #fff;border-radius:50%;object-fit:cover;box-shadow:0 0 0 1px var(--gold),0 9px 22px #101b3c20;transition:transform .65s cubic-bezier(.2,.7,.25,1),box-shadow .45s ease}
     .portrait-bride{object-position:50% 50%}
     .couple-person:hover .portrait{transform:scale(1.045);box-shadow:0 0 0 3px #d8b66c8c,0 13px 28px #101b3c28}
@@ -168,9 +175,9 @@
     .story .body-copy{max-width:640px;margin:18px auto 0;color:#6e6269;font-size:clamp(17px,2vw,20px)}
     .story-title-motion,.story-copy-motion{display:inline-block}
     .story-copy-motion{width:100%}
-    #story.story-in-view .story-title-motion{animation:story-text-sway 3.2s ease-in-out infinite alternate}
-    #story.story-in-view .story-copy-motion{animation:story-text-sway 3.8s .25s ease-in-out infinite alternate}
-    @keyframes story-text-sway{from{transform:translateX(-4px)}to{transform:translateX(4px)}}
+    #story.section-in-view .story-title-motion{animation:story-text-sway 3.2s ease-in-out infinite alternate}
+    #story.section-in-view .story-copy-motion{animation:story-text-sway 3.8s .25s ease-in-out infinite alternate}
+    @keyframes story-text-sway{0%{transform:translateX(-4px);text-shadow:0 0 0 transparent}50%{text-shadow:0 0 13px #d8b66c88}100%{transform:translateX(4px);text-shadow:0 0 0 transparent}}
     #story:before{animation:story-orbit-drift 12s ease-in-out infinite alternate}
     #story:after{animation:story-orbit-drift 14s -5s ease-in-out infinite alternate-reverse}
     #story.reveal.visible .story{animation:story-card-arrive 1s cubic-bezier(.2,.7,.25,1) both}
@@ -312,6 +319,8 @@
     @media(max-width:760px){.event-carousel{width:100vw;max-width:none;margin-left:calc(50% - 50vw)}.event-track{gap:12px;padding:18px 16% 28px}.event-card{min-width:76%;min-height:370px;padding:42px 20px 38px;border-radius:14px}.event-card.is-active{transform:translateY(-8px) scale(.96) translateZ(38px);box-shadow:0 22px 38px #3e344a36}.event-card.is-neighbor{opacity:.58;filter:blur(2.8px) saturate(.72);transform:scale(.78) translateZ(-38px)}.event-card.is-prev{transform:scale(.78) rotateY(10deg) translateZ(-38px)}.event-card.is-next{transform:scale(.78) rotateY(-10deg) translateZ(-38px)}.event-card h3{font-size:clamp(29px,8vw,39px)}.carousel-dots{margin-top:12px}}
     .venue-section{overflow:hidden;background:linear-gradient(180deg,#f7f4ed,#fff)}
     .venue-card{position:relative;display:grid;grid-template-columns:.9fr 1.1fr;max-width:1040px;min-height:390px;margin:auto;overflow:hidden;border:1px solid #d8b66c;background:#fff;box-shadow:0 18px 48px #101b3c18}
+    .venue-section.section-in-view .venue-card{animation:venue-card-glow 4.5s ease-in-out infinite}
+    @keyframes venue-card-glow{50%{box-shadow:0 22px 54px #101b3c20,0 0 28px #d8b66c45}}
     .venue-copy{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;padding:clamp(28px,5vw,58px);background:linear-gradient(145deg,#fffdf8,#f3ecdc)}
     .venue-copy:before,.venue-copy:after{position:absolute;color:#d8b66c;opacity:.65;pointer-events:none}
     .venue-copy:before{content:"✦";top:18px;left:20px;font-size:17px}
@@ -803,6 +812,9 @@
     const musicButton = document.getElementById("music");
     const musicNote = document.getElementById("music-note");
     document.getElementById("open-invitation").addEventListener("click", event => {
+      document.documentElement.style.scrollBehavior = "auto";
+      window.scrollTo(0, 0);
+      document.documentElement.style.scrollBehavior = "";
       const openButton = event.currentTarget;
       openButton.disabled = true;
       weddingSong.volume = 0.72;
@@ -822,7 +834,6 @@
         document.body.style.overflow = "";
       }, cinematicDelay);
       document.querySelectorAll("main section, footer").forEach(section => section.classList.add("reveal"));
-      const storySection = document.getElementById("story");
       if ("IntersectionObserver" in window) {
         const revealObserver = new IntersectionObserver(entries => {
           entries.forEach(entry => {
@@ -833,13 +844,13 @@
           });
         }, { threshold: 0.12 });
         document.querySelectorAll(".reveal").forEach(section => revealObserver.observe(section));
-        const storyMotionObserver = new IntersectionObserver(entries => {
-          entries.forEach(entry => storySection.classList.toggle("story-in-view", entry.isIntersecting));
-        }, { threshold: 0.25 });
-        storyMotionObserver.observe(storySection);
+        const sectionMotionObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => entry.target.classList.toggle("section-in-view", entry.isIntersecting));
+        }, { threshold: 0.2 });
+        document.querySelectorAll("main section").forEach(section => sectionMotionObserver.observe(section));
       } else {
         document.querySelectorAll(".reveal").forEach(section => section.classList.add("visible"));
-        storySection.classList.add("story-in-view");
+        document.querySelectorAll("main section").forEach(section => section.classList.add("section-in-view"));
       }
       window.setTimeout(() => {
         musicNote.classList.add("show");
