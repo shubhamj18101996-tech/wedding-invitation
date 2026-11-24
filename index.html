@@ -166,6 +166,11 @@
     .story .eyebrow{color:#94763d}
     .story h2{color:#55384d}
     .story .body-copy{max-width:640px;margin:18px auto 0;color:#6e6269;font-size:clamp(17px,2vw,20px)}
+    .story-title-motion,.story-copy-motion{display:inline-block}
+    .story-copy-motion{width:100%}
+    #story.story-in-view .story-title-motion{animation:story-text-sway 3.2s ease-in-out infinite alternate}
+    #story.story-in-view .story-copy-motion{animation:story-text-sway 3.8s .25s ease-in-out infinite alternate}
+    @keyframes story-text-sway{from{transform:translateX(-4px)}to{transform:translateX(4px)}}
     #story:before{animation:story-orbit-drift 12s ease-in-out infinite alternate}
     #story:after{animation:story-orbit-drift 14s -5s ease-in-out infinite alternate-reverse}
     #story.reveal.visible .story{animation:story-card-arrive 1s cubic-bezier(.2,.7,.25,1) both}
@@ -221,6 +226,13 @@
     .event-track::-webkit-scrollbar{display:none}
     .event-card{position:relative;display:flex;min-width:calc(100% - 156px);min-height:410px;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;scroll-snap-align:center;box-sizing:border-box;padding:52px 32px 46px;border:1px solid #ffffffad;border-radius:12px;text-align:center;box-shadow:0 14px 28px #101b3c18,0 3px 12px #d8b66c20;opacity:.42;filter:blur(3.2px) saturate(.75);transform:scale(.82) rotateY(9deg) translateZ(-42px);transform-origin:center;transition:opacity .38s ease,filter .38s ease,transform .38s cubic-bezier(.2,.75,.25,1),box-shadow .55s ease}
     .event-card.is-active{z-index:2;opacity:1;filter:none;transform:translateY(-8px) scale(.94) translateZ(44px);box-shadow:0 30px 54px #101b3c42,0 12px 26px #d8b66c45,0 2px 8px #fff9}
+    .event-card.is-active{animation:event-card-glow 3.6s ease-in-out infinite}
+    .event-card.is-active:before,.event-card.is-active:after{animation:event-ornament-glow 4.2s ease-in-out infinite}
+    .event-card.is-active:after{animation-delay:2.1s}
+    .event-card.is-active h3{animation:event-title-shimmer 3.8s ease-in-out infinite}
+    @keyframes event-card-glow{0%,100%{box-shadow:0 30px 54px #101b3c42,0 10px 22px color-mix(in srgb,var(--event-glow),transparent 58%),0 2px 8px #fff9}50%{box-shadow:0 34px 62px #101b3c50,0 16px 34px color-mix(in srgb,var(--event-glow),transparent 28%),0 2px 12px #fff9}}
+    @keyframes event-ornament-glow{0%,100%{opacity:.55;filter:drop-shadow(0 0 0 transparent)}50%{opacity:.95;filter:drop-shadow(0 0 8px var(--event-glow))}}
+    @keyframes event-title-shimmer{0%,100%{filter:drop-shadow(0 0 0 transparent)}50%{filter:drop-shadow(0 0 8px color-mix(in srgb,var(--event-glow),transparent 35%))}}
     .event-card.is-neighbor{z-index:1;opacity:.68;filter:blur(2.1px) saturate(.82);transform:scale(.84) translateZ(-25px);box-shadow:0 18px 34px #101b3c30,0 6px 16px #d8b66c25}
     .event-card.is-prev{transform:scale(.84) rotateY(9deg) translateZ(-25px)}
     .event-card.is-next{transform:scale(.84) rotateY(-9deg) translateZ(-25px)}
@@ -326,6 +338,14 @@
     .nav{z-index:9}.music{z-index:10}
     .hero-content>*{animation:rise-in .8s both}
     .hero-content>*:nth-child(2){animation-delay:.12s}.hero-content>*:nth-child(3){animation-delay:.22s}
+    body.invitation-open .hero-introduction>*{opacity:0;animation:hero-reading-reveal .8s cubic-bezier(.2,.7,.25,1) both}
+    body.invitation-open .hero-introduction>*:nth-child(1){animation-delay:.72s}
+    body.invitation-open .hero-introduction>*:nth-child(2){animation-delay:1.02s}
+    body.invitation-open .hero-introduction>*:nth-child(3){animation-delay:1.32s}
+    body.invitation-open .hero-introduction>*:nth-child(4){animation-delay:1.62s}
+    body.invitation-open .hero-date-column{opacity:0;animation:hero-reading-reveal .9s 1.9s cubic-bezier(.2,.7,.25,1) both}
+    body.invitation-open .hero-scroll{opacity:0;animation:hero-reading-reveal .72s 2.15s cubic-bezier(.2,.7,.25,1) both,scroll-hint 2.2s 2.87s ease-in-out infinite}
+    @keyframes hero-reading-reveal{from{opacity:0;clip-path:inset(0 100% 0 0);filter:blur(4px)}to{opacity:1;clip-path:inset(0 0 0 0);filter:blur(0)}}
     @keyframes rise-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
     .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
     .reveal.visible{opacity:1;transform:translateY(0)}
@@ -376,6 +396,14 @@
     .opening-blessing{margin:0 0 18px;color:#ffffffc9;font-family:"Noto Sans Devanagari","Nirmala UI",sans-serif;font-size:clamp(10px,1.8vw,13px);font-style:normal;line-height:1.6}
     .opening-card h2{color:#f7edda;font-size:clamp(36px,8vw,60px)}
     .opening-card p{color:#ffffffc9;font-style:italic}
+    .opening-card>*{opacity:0;animation:opening-text-reveal .8s cubic-bezier(.2,.7,.25,1) forwards}
+    .opening-card>*:nth-child(1){animation-delay:.18s}
+    .opening-card>*:nth-child(2){animation-delay:.38s}
+    .opening-card>*:nth-child(3){animation-delay:.56s}
+    .opening-card>*:nth-child(4){animation-delay:.74s}
+    .opening-card>*:nth-child(5){animation-delay:.92s}
+    .opening-card>*:nth-child(6){animation-delay:1.12s}
+    @keyframes opening-text-reveal{from{opacity:0;transform:translateY(16px);filter:blur(5px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
     .open-button{margin-top:16px;border-radius:30px;background:linear-gradient(120deg,#b99750,#f1d99f,#b99750);color:var(--navy);font-weight:600}
     .open-button:hover{transform:translateY(-2px);box-shadow:0 8px 24px #d8b66c55}
     .music-note{position:fixed;z-index:9;right:80px;bottom:28px;padding:7px 12px;border:1px solid #d8b66c99;border-radius:18px;background:#101b3cdd;color:white;font-size:14px;opacity:0;transform:translateY(5px);transition:.25s;pointer-events:none}
@@ -563,7 +591,7 @@
     </section>
 
     <section id="story">
-      <div class="story"><div class="eyebrow">Our story</div><h2>From hello to forever</h2><p class="body-copy">Our families brought us together through this arranged union, and with every passing day we are discovering love, trust, and countless beautiful moments. With their blessings, we are beginning our forever journey together.</p></div>
+      <div class="story"><div class="eyebrow">Our story</div><h2><span class="story-title-motion">From hello to forever</span></h2><p class="body-copy"><span class="story-copy-motion">Our families brought us together through this arranged union, and with every passing day we are discovering love, trust, and countless beautiful moments. With their blessings, we are beginning our forever journey together.</span></p></div>
     </section>
 
     <section class="events" id="events">
@@ -794,6 +822,7 @@
         document.body.style.overflow = "";
       }, cinematicDelay);
       document.querySelectorAll("main section, footer").forEach(section => section.classList.add("reveal"));
+      const storySection = document.getElementById("story");
       if ("IntersectionObserver" in window) {
         const revealObserver = new IntersectionObserver(entries => {
           entries.forEach(entry => {
@@ -804,8 +833,13 @@
           });
         }, { threshold: 0.12 });
         document.querySelectorAll(".reveal").forEach(section => revealObserver.observe(section));
+        const storyMotionObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => storySection.classList.toggle("story-in-view", entry.isIntersecting));
+        }, { threshold: 0.25 });
+        storyMotionObserver.observe(storySection);
       } else {
         document.querySelectorAll(".reveal").forEach(section => section.classList.add("visible"));
+        storySection.classList.add("story-in-view");
       }
       window.setTimeout(() => {
         musicNote.classList.add("show");
