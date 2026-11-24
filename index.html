@@ -123,6 +123,7 @@
     .couple-person:hover:before{opacity:.9;transform:rotate(45deg) scale(1.35)}
     .couple-person:hover:after{opacity:.9;transform:rotate(-45deg) scale(1.35)}
     .portrait{width:180px;height:180px;margin:0 auto 17px;border:5px solid #fff;border-radius:50%;object-fit:cover;box-shadow:0 0 0 1px var(--gold),0 9px 22px #101b3c20;transition:transform .65s cubic-bezier(.2,.7,.25,1),box-shadow .45s ease}
+    .portrait-bride{object-position:50% 50%}
     .couple-person:hover .portrait{transform:scale(1.045);box-shadow:0 0 0 3px #d8b66c8c,0 13px 28px #101b3c28}
     .couple h3{margin:0;color:var(--navy);font-family:"Allura","Great Vibes",cursive;font-size:clamp(39px,5vw,49px);font-weight:400}
     .couple-role{display:block;margin:0 0 12px;color:#94763d;font-size:11px;letter-spacing:.18em;text-transform:uppercase}
@@ -154,10 +155,22 @@
     @keyframes second-heart-beat{0%,100%{transform:scale(1)}22%{transform:scale(1.17)}43%{transform:scale(.97)}66%{transform:scale(1.09)}}
     .note{color:#ffffffb8;font-size:16px}
     .story{max-width:750px;margin:auto;text-align:center}
-    .gallery{background:#f2eee5}
-    .photos{max-width:1000px;height:420px;display:grid;grid-template-columns:1.2fr .8fr;grid-template-rows:1fr 1fr;gap:12px;margin:auto}
-    .photos img{width:100%;height:100%;object-fit:cover}
-    .photos img:first-child{grid-row:1/3}
+    .gallery{background:radial-gradient(circle at 50% 20%,#fff,#f2eee5 68%);overflow:hidden}
+    .gallery-slider{position:relative;max-width:1000px;margin:auto}
+    .gallery-track{display:flex;align-items:center;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:28px 18% 38px;perspective:1000px;scrollbar-width:none}
+    .gallery-track::-webkit-scrollbar{display:none}
+    .gallery-slide{position:relative;min-width:min(330px,58vw);height:520px;overflow:hidden;scroll-snap-align:center;border:10px solid #fff;border-radius:165px 165px 28px 28px;background:#ddd;box-shadow:0 18px 38px #25233a38,0 0 0 1px #d8b66c66;transform:scale(.82) translateZ(-40px);opacity:.52;filter:saturate(.82);transition:.45s cubic-bezier(.2,.7,.25,1)}
+    .gallery-slide.active{z-index:3;transform:scale(1.02) translateY(-8px) translateZ(35px);opacity:1;filter:none}
+    .gallery-slide.neighbor{z-index:1;opacity:.58;filter:blur(2.2px) saturate(.75);transform:scale(.82) translateZ(-30px)}
+    .gallery-slide img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
+    .gallery-slide:nth-child(2) img{object-position:50% 52%}
+    .gallery-slide:nth-child(3) img{object-position:50% 32%}
+    .gallery-slide:nth-child(4) img{object-position:50% 28%}
+    .gallery-slide:nth-child(5) img{object-position:50% 35%}
+    .gallery-slide:after{position:absolute;inset:0;border:1px solid #d8b66c88;border-radius:inherit;content:"";pointer-events:none}
+    .gallery-caption{position:absolute;right:14px;bottom:14px;left:14px;padding:12px 14px;border-radius:16px;background:linear-gradient(90deg,#101b3ccc,#101b3c88);color:white;font-family:"Cormorant Garamond",serif;font-size:16px;text-align:center;backdrop-filter:blur(5px)}
+    .gallery-dots{display:flex;justify-content:center;gap:7px;margin-top:-16px}
+    .gallery-dot{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:#c8bdc1;cursor:pointer}.gallery-dot.active{width:25px;border-radius:8px;background:#94763d}
     .events{position:relative;overflow:hidden;background:#f8f5ef}
     .events:before{position:absolute;inset:0;content:"";background:radial-gradient(circle at 10% 30%,#ead6df66 0 8%,transparent 9%),radial-gradient(circle at 90% 70%,#d8e3ef66 0 9%,transparent 10%);pointer-events:none}
     .event-carousel{position:relative;z-index:1;width:min(560px,82vw);margin:auto;perspective:1100px}
@@ -359,7 +372,9 @@
       .timer{display:grid;grid-template-columns:1fr 1fr;max-width:320px;gap:24px 16px}
       .countdown-separator{display:none}
       .seconds-unit{min-width:94px}
-      .photos{height:clamp(260px,65vw,380px);gap:8px}
+      .gallery-track{gap:10px;padding:16px 15% 26px}
+      .gallery-slide{min-width:70vw;height:min(115vw,430px);border-width:6px;border-radius:48% 48% 10px 10px}
+      .gallery-slide.neighbor{opacity:.42;filter:blur(2.6px) saturate(.68);transform:scale(.76) translateZ(-35px)}
       .venue-card{grid-template-columns:minmax(0,1fr)}
       .venue-copy{padding:34px 25px}
       .venue-map,.venue-map iframe{min-height:300px}
@@ -376,7 +391,9 @@
       .countdown .timer{margin:30px auto 18px}
       .unit{min-width:0}
       .number{font-size:clamp(36px,10vw,48px)}
-      .photos{height:300px;gap:7px}
+      .gallery-track{gap:8px;padding:14px 10% 22px}
+      .gallery-slide{min-width:80vw;height:min(112vw,410px);border-width:5px;border-radius:50% 50% 8px 8px}
+      .gallery-slide.active{transform:scale(.98) translateY(-5px)}
       footer strong{font-size:32px}
     }
     @media(max-width:390px){
@@ -389,7 +406,8 @@
       .hero-wordmark{gap:6px}
       .date-frame{width:min(76vw,255px)}
       .couple-bloom-six,.couple-bloom-seven,.couple-bloom-nine{opacity:.5}
-      .photos{height:250px}
+      .gallery-slide{height:min(105vw,390px);border-width:5px;border-radius:48% 48% 8px 8px}
+      .gallery-caption{right:12%;bottom:12px;left:12%;padding:8px 10px;border:1px solid #ffffffaa;border-radius:999px;background:#101b3cdd;font-family:"Cormorant Garamond",serif;font-size:13px;font-style:italic}
       .venue-fact{font-size:14px}
       .music-note{right:72px;bottom:20px;font-size:12px}
     }
@@ -461,9 +479,9 @@
       <span class="couple-bloom couple-bloom-ten" aria-hidden="true">❁</span>
       <div class="heading"><div class="eyebrow">A beautiful beginning</div><h2>Meet the couple</h2><p>Two hearts, one journey, and a lifetime of memories waiting to be made.</p></div>
       <div class="couple-grid">
-        <div class="couple-person"><img class="portrait" src="assets/nancy.jpeg" alt="Portrait of Nancy Jain" loading="lazy"><span class="couple-role">Bride</span><h3>Nancy Jain</h3><p class="couple-parents"><strong>Daughter of</strong>Mr. Pradeep Kumar Jain &amp; Mrs. Archana Jain</p></div>
+        <div class="couple-person"><img class="portrait portrait-bride" src="assets/nancy%201.jpeg" alt="Portrait of Nancy Jain" loading="lazy"><span class="couple-role">Bride</span><h3>Nancy Jain</h3><p class="couple-parents"><strong>Daughter of</strong>Mr. Pradeep Kumar Jain &amp; Mrs. Archana Jain</p></div>
         <div class="amp" aria-hidden="true">&amp;</div>
-        <div class="couple-person"><img class="portrait" src="assets/arpit.jpeg" alt="Portrait of Arpit Jain" loading="lazy"><span class="couple-role">Groom</span><h3>Arpit Jain</h3><p class="couple-parents"><strong>Son of</strong>Mr. Manoj Kumar Jain &amp; Mrs. Reeta Jain</p></div>
+        <div class="couple-person"><img class="portrait" src="assets/Arpit1.jpeg" alt="Portrait of Arpit Jain" loading="lazy"><span class="couple-role">Groom</span><h3>Arpit Jain</h3><p class="couple-parents"><strong>Son of</strong>Mr. Manoj Kumar Jain &amp; Mrs. Reeta Jain</p></div>
       </div>
     </section>
 
@@ -507,10 +525,15 @@
 
     <section class="gallery">
       <div class="heading"><div class="eyebrow">Love in every moment</div><h2>Celebrating together</h2><p>A little inspiration for the beautiful memories we'll make together.</p></div>
-      <div class="photos">
-        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&amp;fit=crop&amp;w=1100&amp;q=85" alt="Romantic wedding celebration" loading="lazy">
-        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&amp;fit=crop&amp;w=800&amp;q=85" alt="Wedding couple celebrating" loading="lazy">
-        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&amp;fit=crop&amp;w=800&amp;q=85" alt="Beautiful wedding decorations" loading="lazy">
+      <div class="gallery-slider">
+        <div class="gallery-track" id="gallery-track">
+          <figure class="gallery-slide"><img src="assets/gallary2.jpeg" alt="Arpit and Nancy holding hands" loading="lazy"><figcaption class="gallery-caption">A lifetime of love</figcaption></figure>
+          <figure class="gallery-slide"><img src="assets/gallary1.jpeg" alt="Arpit and Nancy sitting together" loading="lazy"><figcaption class="gallery-caption">Together in every moment</figcaption></figure>
+          <figure class="gallery-slide"><img src="assets/Arpit1.jpeg" alt="Arpit portrait" loading="lazy"><figcaption class="gallery-caption">Every moment with you</figcaption></figure>
+          <figure class="gallery-slide"><img src="assets/nancy%201.jpeg" alt="Nancy portrait" loading="lazy"><figcaption class="gallery-caption">Our beautiful story</figcaption></figure>
+          <figure class="gallery-slide"><img src="assets/gallary3.jpeg" alt="Nancy and Arpit wedding rings" loading="lazy"><figcaption class="gallery-caption">Two hearts, forever</figcaption></figure>
+        </div>
+        <div class="gallery-dots" aria-label="Choose gallery photo"></div>
       </div>
     </section>
 
@@ -625,6 +648,53 @@
       }, { passive: true });
       updateEventCards();
       window.requestAnimationFrame(() => goToEvent(0));
+    }
+
+    const galleryTrack = document.getElementById("gallery-track");
+    const gallerySlides = galleryTrack ? Array.from(galleryTrack.querySelectorAll(".gallery-slide")) : [];
+    const galleryDots = document.querySelector(".gallery-dots");
+    let galleryIndex = 0;
+
+    if (galleryTrack && galleryDots) {
+      gallerySlides.forEach((slide, index) => {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "gallery-dot" + (index === 0 ? " active" : "");
+        dot.setAttribute("aria-label", `View gallery photo ${index + 1}`);
+        dot.addEventListener("click", () => goToGallery(index));
+        galleryDots.appendChild(dot);
+      });
+
+      const goToGallery = index => {
+        galleryIndex = (index + gallerySlides.length) % gallerySlides.length;
+        const slideLeft = gallerySlides[galleryIndex].offsetLeft;
+        const centeredLeft = slideLeft - (galleryTrack.clientWidth - gallerySlides[galleryIndex].offsetWidth) / 2;
+        galleryTrack.scrollTo({ left: centeredLeft, behavior: "smooth" });
+        updateGallery();
+      };
+
+      const updateGallery = () => {
+        galleryDots.querySelectorAll(".gallery-dot").forEach((dot, index) => dot.classList.toggle("active", index === galleryIndex));
+        gallerySlides.forEach((slide, index) => {
+          slide.classList.toggle("active", index === galleryIndex);
+          slide.classList.toggle("neighbor", Math.abs(index - galleryIndex) === 1);
+        });
+      };
+
+      galleryTrack.addEventListener("scroll", () => {
+        window.requestAnimationFrame(() => {
+          const viewportCenter = galleryTrack.scrollLeft + galleryTrack.clientWidth / 2;
+          galleryIndex = gallerySlides.reduce((closest, slide, index) => {
+            const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+            const closestCenter = gallerySlides[closest].offsetLeft + gallerySlides[closest].offsetWidth / 2;
+            return Math.abs(slideCenter - viewportCenter) < Math.abs(closestCenter - viewportCenter) ? index : closest;
+          }, 0);
+          updateGallery();
+        });
+      }, { passive: true });
+
+      updateGallery();
+      window.requestAnimationFrame(() => goToGallery(0));
     }
 
     const opening = document.getElementById("opening");
