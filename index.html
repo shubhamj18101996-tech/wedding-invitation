@@ -32,7 +32,7 @@
     .hero-wordmark{display:flex;align-items:center;gap:13px;margin-bottom:22px}
     .hero-wordmark:before{content:"";width:32px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
     .hero-blessing{color:#fff;font-size:12px;letter-spacing:3px;text-transform:uppercase}
-    .hero-om{color:var(--gold);font-size:35px;line-height:1;text-shadow:0 2px 18px #d8b66c65}
+    .hero-om{display:block;width:48px;height:78px;object-fit:contain;filter:drop-shadow(0 2px 6px #d8b66c80)}
     .hero-invite{max-width:510px;margin:0 0 12px;color:#ffffffdc;font-size:clamp(20px,2.1vw,27px);font-style:italic;line-height:1.35}
     .hero h1{display:flex;align-items:baseline;justify-content:flex-start;gap:clamp(5px,1vw,13px);width:100%;margin:0 0 14px;color:#f7f0df;font-family:"Allura","Great Vibes",cursive;font-size:clamp(64px,7vw,92px);font-weight:400;line-height:1.12;letter-spacing:0;white-space:nowrap;text-transform:capitalize;text-shadow:0 2px 24px #0005}
     .hero h1 .groom-name,.hero h1 .bride-name{display:inline-block;text-transform:capitalize}
@@ -80,7 +80,7 @@
     .hero-corner-icon:after{width:1px;height:29px}
     .hero-corner-icon span{transform:rotate(45deg);font-size:17px}
     .eyebrow{color:var(--gold);text-transform:uppercase;letter-spacing:.22em;font-size:13px}
-    .om{display:block;color:var(--gold);font-size:38px;margin:26px 0 8px}
+    .om{display:block;width:42px;height:68px;margin:18px auto 8px;object-fit:contain;filter:drop-shadow(0 3px 8px #d8b66c66)}
     h1{margin:0;font-family:"Playfair Display",Georgia,serif;font-size:clamp(54px,10vw,106px);font-weight:400;line-height:1.08}
     h1 span{color:var(--gold);font-style:italic}
     .hero p{font-size:21px;font-style:italic;color:#ffffffda}
@@ -325,7 +325,7 @@
     @keyframes ring-counterclockwise{to{transform:rotate(-360deg)}}
     @keyframes rotate{to{transform:rotate(360deg)}}
     .opening-card{position:relative;z-index:1;max-width:560px;padding:48px 25px;border:1px solid #d8b66c77;background:#101b3c55;box-shadow:0 20px 70px #0004}
-    .opening-card .om{margin:0 0 9px}
+    .opening-card .om{margin:0 auto 9px}
     .opening-card h2{color:#f7edda;font-size:clamp(36px,8vw,60px)}
     .opening-card p{color:#ffffffc9;font-style:italic}
     .open-button{margin-top:16px;border-radius:30px;background:linear-gradient(120deg,#b99750,#f1d99f,#b99750);color:var(--navy);font-weight:600}
@@ -351,7 +351,7 @@
       .hero-wordmark{justify-content:center;gap:9px;margin-bottom:15px}
       .hero-wordmark:before{width:18px}
       .hero-blessing{font-size:clamp(9px,2vw,11px);letter-spacing:1.6px}
-      .hero-om{font-size:30px}
+      .hero-om{width:42px;height:68px}
       .hero-invite{max-width:480px;margin:0 auto 8px;font-size:clamp(18px,4vw,22px)}
       .hero h1{justify-content:center;gap:clamp(5px,2vw,12px);font-size:clamp(56px,12vw,82px);margin-bottom:10px}
       .hero-family-details{max-width:480px;margin:auto;border-left:0;border-top:1px solid #d8b66c66;padding:9px 0 0;font-size:16px}
@@ -419,7 +419,7 @@
   <div class="opening" id="opening">
     <div class="opening-rings" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
     <div class="opening-card">
-      <span class="om" aria-hidden="true">ॐ</span>
+      <img class="om" src="assets/auspicious-mark.png" alt="Auspicious swastik and blessing hand symbol">
       <div class="eyebrow">Together with our families</div>
       <h2>Arpit <span style="color:var(--gold);font-style:italic">&amp;</span> Nancy</h2>
       <p>Joyfully invite you to celebrate their wedding</p>
@@ -441,7 +441,7 @@
     <span class="hero-corner-icon" aria-hidden="true"><span>✦</span></span>
     <div class="hero-content">
       <div class="hero-introduction">
-        <div class="hero-wordmark"><span class="hero-om" aria-hidden="true">ॐ</span><span class="hero-blessing">With the blessings of the Almighty</span></div>
+        <div class="hero-wordmark"><img class="hero-om" src="assets/auspicious-mark.png" alt=""><span class="hero-blessing">With the blessings of the Almighty</span></div>
         <p class="hero-invite">Together with our families, we invite you to celebrate our wedding</p>
         <h1><span class="groom-name">Arpit</span> <span class="hero-heart" aria-label="and">♥</span> <span class="bride-name">Nancy</span></h1>
         <p class="hero-family-details">With love and blessings, our families invite you to share in the joy of this special day.</p>
