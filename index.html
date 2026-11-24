@@ -360,7 +360,14 @@
       .hero h1{justify-content:center;gap:clamp(5px,2vw,12px);font-size:clamp(56px,12vw,82px);margin-bottom:10px}
       .hero-family-details{max-width:480px;margin:auto;border-left:0;border-top:1px solid #d8b66c66;padding:9px 0 0;font-size:16px}
       .hero-date-column{gap:7px}
+      .hero-content{row-gap:40px}
       .hero-date-kicker{font-size:10px;letter-spacing:2px}
+      .hero-date-column{animation:mobile-date-arrive .9s .2s cubic-bezier(.2,.7,.25,1) both}
+      .hero-date-kicker{animation:mobile-date-kicker .7s .32s both}
+      .hero-date-column .date-frame{animation:mobile-date-frame .9s .42s cubic-bezier(.2,.7,.25,1) both}
+      @keyframes mobile-date-arrive{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+      @keyframes mobile-date-kicker{from{opacity:0;letter-spacing:5px}to{opacity:1;letter-spacing:2px}}
+      @keyframes mobile-date-frame{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
       .date-frame{width:min(76vw,290px);padding:36px}
       .date-day{font-size:72px}
       .date-flower{top:22px;font-size:22px}
