@@ -291,6 +291,10 @@
     .reveal.visible .heading>*:nth-child(2){animation-delay:.08s}
     .reveal.visible .heading>*:nth-child(3){animation-delay:.16s}
     @keyframes section-text-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+    #story.reveal.visible .story>*{animation:story-arrive .85s cubic-bezier(.2,.7,.25,1) both}
+    #story.reveal.visible .story>*:nth-child(2){animation-delay:.12s}
+    #story.reveal.visible .story>*:nth-child(3){animation-delay:.24s}
+    @keyframes story-arrive{from{opacity:0;transform:translateY(26px) scale(.98);filter:blur(4px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
     .couple-grid>div,.event-card,.unit,.photos img{transition:transform .35s ease,box-shadow .35s ease}
     .couple-grid>div:hover{transform:translateY(-5px)}
     .portrait{transition:transform .5s ease,box-shadow .5s ease}
@@ -369,9 +373,11 @@
       .couple-person{width:100%;min-height:0;padding:24px 18px}
       .amp{width:46px;height:46px;margin:-2px auto}
       .portrait{width:150px;height:150px}
-      .timer{display:grid;grid-template-columns:1fr 1fr;max-width:320px;gap:24px 16px}
+      .timer{display:grid;width:min(100%,320px);grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 16px}
+      .timer>.unit{width:100%;min-width:0}
       .countdown-separator{display:none}
-      .seconds-unit{min-width:94px}
+      .seconds-unit{width:100%;min-width:0;height:96px}
+      .seconds-heart{top:0;right:auto;bottom:auto;left:50%;width:94px;height:96px;margin-left:-47px}
       .gallery-track{gap:10px;padding:16px 15% 26px}
       .gallery-slide{min-width:70vw;height:min(115vw,430px);border-width:6px;border-radius:48% 48% 10px 10px}
       .gallery-slide.neighbor{opacity:.42;filter:blur(2.6px) saturate(.68);transform:scale(.76) translateZ(-35px)}
